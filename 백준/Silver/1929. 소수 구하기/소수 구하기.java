@@ -6,30 +6,26 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
         String[] inputs = br.readLine().split(" ");
         int M = Integer.parseInt(inputs[0]);
         int N = Integer.parseInt(inputs[1]);
 
-        if (M < 2) {
-            M = 2;
-        }
-
-        for (int num = M; num <= N; num++) {
-            if (isPrime(num)) {
-                System.out.println(num);
+        for (int i = M; i <= N; i++) {
+            if (isPrime(i)) {
+                sb.append(i).append("\n");
             }
         }
+
+        System.out.println(sb);
     }
 
     public static boolean isPrime(int n) {
-        if (n < 2) {
-            return false;
-        }
-        for (int i = 2; i <= (int)Math.sqrt(n); i++) {
-            if (n % i == 0) {
-                return false;
-            }
+        if (n < 2) return false;
+
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
         }
         return true;
     }
