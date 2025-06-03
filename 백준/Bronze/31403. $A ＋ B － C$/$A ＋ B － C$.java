@@ -12,6 +12,6 @@ public class Main {
         int c = Integer.parseInt(br.readLine());
 
         System.out.println(a + b - c);
-        System.out.println(Integer.parseInt((a + String.valueOf(b))) - c);
+        System.out.println(Integer.parseInt("" + a + b) - c);
     }
 }
