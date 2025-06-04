@@ -14,15 +14,8 @@ public class Main {
         int H = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        if (!((H >= 0 && H <= 23) && (M >= 0 && M <= 59))) return;
-
-        if (M < 45) {
-            H--;
-            if (H < 0) H = 23;
-            M = M + 60 - 45;
-        } else {
-            M = M - 45;
-        }
+        H = M < 45 ? (H+23)%24 : H;
+        M = M < 45 ? M+15 : M-45;
 
         System.out.println(H + " " + M);
     }
