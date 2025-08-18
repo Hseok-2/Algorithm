@@ -1,29 +1,34 @@
 import java.util.*;
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
+        // 큐 선언
         Queue<Integer> answer = new ArrayDeque<>();
-
-        // 기능별 각 배포 가능일 구하기
+        
+        // 각 기능별 배포 가능 날짜 배열로 초기화
         int n = progresses.length;
-        int[] canDeployDay = new int[n];
+        int[] canDeploy = new int[n];
+
         for (int i = 0; i < n; i++) {
-            canDeployDay[i] = (int) (Math.ceil((100.0 - progresses[i]) / speeds[i]));
+            canDeploy[i] = (int)(Math.ceil((100.0-progresses[i])/speeds[i]));
         }
-
-        int cnt = 0; // 배포될 작업의 수 카운트
-        int maxDay = canDeployDay[0]; // 현재 배포될 작업 중 가장 늦게 배포될 작업의 가능일
-
+        
+        // 하나의 배포에 몇 개의 기능인지 셀 cnt 변수 선언
+        int cnt = 0; 
+        // 첫 번째 기능 배포일을 maxDay에 저장
+        int maxDay = canDeploy[0];
+        
+        // for문
         for (int i = 0; i < n; i++) {
-            if (canDeployDay[i] <= maxDay) { // 배포 가능일이 기준 배포일보다 빠른 경우
+            if (canDeploy[i] <= maxDay) {
                 cnt++;
             }else {
                 answer.add(cnt);
                 cnt = 1;
-                maxDay = canDeployDay[i];
+                maxDay = canDeploy[i];
             }
         }
-
         answer.add(cnt);
+
         return answer.stream()
                 .mapToInt(Integer::intValue)
                 .toArray();
