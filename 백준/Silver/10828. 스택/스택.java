@@ -14,6 +14,8 @@ public class Main {
 
         Stack<Integer> stack = new Stack<>();
 
+        StringBuilder sb = new StringBuilder();
+
         while (N-- > 0) {
             StringTokenizer st = new StringTokenizer(br.readLine());
 
@@ -25,20 +27,21 @@ public class Main {
                     break;
 
                 case "pop":
-                    System.out.println(stack.isEmpty()? -1 : stack.pop());
+                    sb.append(stack.isEmpty()? -1 : stack.pop()).append('\n');
                     break;
 
                 case "size":
-                    System.out.println(stack.size());
+                    sb.append(stack.size()).append('\n');
                     break;
 
                 case "empty":
-                    System.out.println(stack.isEmpty()? 1 : 0);
+                    sb.append(stack.isEmpty()? 1 : 0).append('\n');
                     break;
 
                 case "top":
-                    System.out.println(stack.isEmpty()? -1 : stack.peek());
+                    sb.append(stack.isEmpty()? -1 : stack.peek()).append('\n');
             }
         }
+        System.out.println(sb);
     }
 }
