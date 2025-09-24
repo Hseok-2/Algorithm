@@ -13,6 +13,7 @@ public class Main {
         // 정수를 저장하는 스택 생성
         ArrayDeque<Integer> stack = new ArrayDeque<>();
 
+        StringBuilder sb = new StringBuilder();
         // N만큼 while문 실행
         while (N-- > 0) {
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -26,28 +27,29 @@ public class Main {
                 case "2":
                     if(!stack.isEmpty()) {
                         int num = stack.pop();
-                        System.out.println(num);
+                        sb.append(num).append('\n');
                     } else {
-                        System.out.println(-1);
+                        sb.append(-1).append('\n');
                     }
                     break;
                 case "3":
-                    System.out.println(stack.size());
+                    sb.append(stack.size()).append('\n');
                     break;
                 case "4":
                     if (stack.isEmpty()) {
-                        System.out.println(1);
+                        sb.append(1).append('\n');
                     }else {
-                        System.out.println(0);
+                        sb.append(0).append('\n');
                     }
                     break;
                 case "5":
                     if(!stack.isEmpty()) {
-                        System.out.println(stack.peek());
+                        sb.append(stack.peek()).append('\n');
                     }else {
-                        System.out.println(-1);
+                        sb.append(-1).append('\n');
                     }
             }
         }
+        System.out.println(sb);
     }
 }
