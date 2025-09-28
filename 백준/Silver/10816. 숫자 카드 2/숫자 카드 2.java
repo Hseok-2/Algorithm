@@ -17,11 +17,7 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
             int cardNum = Integer.parseInt(st.nextToken());
-            if (hashMap.containsKey(cardNum)) {
-                hashMap.put(cardNum, hashMap.getOrDefault(cardNum, 0) + 1);
-            }else {
-                hashMap.put(cardNum, 1);
-            }
+            hashMap.put(cardNum, hashMap.getOrDefault(cardNum, 0) + 1);
         }
 
         // 정수 M 입력
@@ -29,11 +25,7 @@ public class Main {
         StringTokenizer st2 = new StringTokenizer(br.readLine());
         for (int i = 0; i < M; i++) {
             int num = Integer.parseInt(st2.nextToken());
-            if(hashMap.containsKey(num)) {
-                sb.append(hashMap.get(num)).append(" ");
-            } else {
-                sb.append(0).append(" ");
-            }
+            sb.append(hashMap.getOrDefault(num, 0)).append(" ");
         }
 
         System.out.println(sb);
