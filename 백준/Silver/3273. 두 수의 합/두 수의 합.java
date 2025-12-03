@@ -1,40 +1,32 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.StringTokenizer;
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
+        int N = Integer.parseInt(br.readLine()); // 수열 크기 입력받기
 
-        HashSet<Integer> set = new HashSet<>();
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            set.add(Integer.parseInt(st.nextToken()));
+        int[] numArr = new int[N]; // 길이가 N인 수열
+        StringTokenizer st = new StringTokenizer(br.readLine()); // 수열에 포함되는 수 한 줄에 입력받기
+        for (int i = 0; i < numArr.length; i++) { // 수열 초기화
+            numArr[i] = Integer.parseInt(st.nextToken());
         }
 
         int x = Integer.parseInt(br.readLine()); // x값 입력받기
+        HashSet<Integer> set = new HashSet<>();
 
-        List<Integer> tempSet = new ArrayList<>(set);
-        Collections.sort(tempSet); // 오름차순 정렬
-
-        int start = 0;
-        int end = N-1;
         int count = 0;
 
-        while (start < end) {
-            if(tempSet.get(start) + tempSet.get(end) > x) {
-                end--;
-            } else if(tempSet.get(start) + tempSet.get(end) < x) {
-                start++;
-            } else {
-                start++;
-                end--;
+        for (int num : numArr) {
+            if(set.contains(x - num)) {
                 count++;
             }
+            set.add(num);
         }
 
         System.out.println(count);
