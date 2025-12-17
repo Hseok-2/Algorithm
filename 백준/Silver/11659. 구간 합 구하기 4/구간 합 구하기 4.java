@@ -10,15 +10,11 @@ public class Main {
         int N = Integer.parseInt(st.nextToken()); // 수의 개수
         int M = Integer.parseInt(st.nextToken()); // 횟수 M
 
-        int[] num = new int[N];
         st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < num.length; i++) {
-            num[i] = Integer.parseInt(st.nextToken());
-        }
 
         int[] sum = new int[N + 1]; // 구간합 배열
         for (int i = 1; i < sum.length; i++) {
-            sum[i] += sum[i - 1] + num[i - 1];
+            sum[i] += sum[i - 1] + Integer.parseInt(st.nextToken());
         }
 
         StringBuilder sb = new StringBuilder();
