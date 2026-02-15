@@ -3,40 +3,39 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        int answer = 0;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        int M = Integer.parseInt(st.nextToken()); // 조카의 수
+        int N = Integer.parseInt(st.nextToken()); // 과자의 수
 
-        int M = Integer.parseInt(st.nextToken()); // 조카 수
-        int N = Integer.parseInt(st.nextToken()); // 과자 수
-
-        int[] snack = new int[N];
-        st = new StringTokenizer(br.readLine());
+        int[] snacks = new int[N];
+        int maxLen = 0;
+        st = new StringTokenizer(br.readLine()); // 과자의 각 길이 입력
         for (int i = 0; i < N; i++) {
-            snack[i] = Integer.parseInt(st.nextToken());
+            snacks[i] = Integer.parseInt(st.nextToken());
+            maxLen = Math.max(maxLen, snacks[i]);
         }
 
-        Arrays.sort(snack); // 오름차순 정렬
+        int start = 1;
+        int end = maxLen;
 
-        int left = 1; // 가장 짧은 과자 길이
-        int right = snack[N - 1]; // 가장 긴 과자 길이
-        int answer = 0; // 결과 담을 변수
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            int sum = 0;
 
-        while(left <= right) {
-            int mid = (left + right) / 2;
-            int snackEa = 0; // 과자 조각 수
-
-            // 과자 조각 수 구하기
             for (int i = 0; i < N; i++) {
-                snackEa += snack[i] / mid;
+                sum += snacks[i] / mid; // 과자 총 개수
             }
 
-            if(snackEa >= M) {
+            if(sum >= M) {
                 answer = mid;
-                left = mid + 1;
-            } else {
-                right = mid - 1;
+                start = mid + 1;
+            }else {
+                end = mid - 1;
             }
         }
+
         System.out.println(answer);
     }
 }
