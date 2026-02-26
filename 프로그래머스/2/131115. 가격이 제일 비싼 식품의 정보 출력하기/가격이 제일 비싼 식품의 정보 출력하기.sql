@@ -6,5 +6,7 @@ SELECT
     CATEGORY,
     PRICE
 from food_product
-order by price desc
-limit 1;
+where price = (
+    select max(price) as price
+    from food_product
+);
